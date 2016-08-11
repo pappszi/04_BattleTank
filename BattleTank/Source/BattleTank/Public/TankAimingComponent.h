@@ -2,8 +2,10 @@
 
 #pragma once
 
+#include "BattleTank.h"
 #include "Components/ActorComponent.h"
 #include "TankAimingComponent.generated.h"
+
 //Forward declaration
 class UTankBarrel; 
 
