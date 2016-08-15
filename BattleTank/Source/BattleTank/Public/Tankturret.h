@@ -8,7 +8,7 @@
 /**
  * 
  */
-UCLASS(meta = (BlueprintSpawnableComponent), hidecategories = ("Collision")) //component can be chosen from blueprint
+UCLASS(meta = (BlueprintSpawnableComponent))//, hidecategories = ("Collision")) //component can be chosen from blueprint
 class BATTLETANK_API UTankturret : public UStaticMeshComponent
 {
 	GENERATED_BODY()
