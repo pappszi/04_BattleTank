@@ -6,7 +6,7 @@
 #include "Tankturret.generated.h"
 
 /**
- * 
+ * TankTrack is used to set maximum driving force, and to apply forces to the tank
  */
 UCLASS(meta = (BlueprintSpawnableComponent))//, hidecategories = ("Collision")) //component can be chosen from blueprint
 class BATTLETANK_API UTankturret : public UStaticMeshComponent
