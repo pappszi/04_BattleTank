@@ -34,7 +34,7 @@ private:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-
+	//TODO remove once firing is moved to aiming componenet
 	UPROPERTY(EditDefaultsOnly, Category = "Firing")
 	float LaunchSpeed = 4000;
 
