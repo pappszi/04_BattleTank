@@ -8,15 +8,18 @@
 /**
  * 
  */
-UCLASS()
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
-	
+
+protected:
+	//How close can the AI Tank get to the player
+	UPROPERTY(EditDefaultsOnly, Category = "Setup") //Consider DefaultsEditOnly
+	float AcceptanceRadius = 8000;
+
 private:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
-
-	//How close can the AI Tank get to the player
-	float AcceptanceRadius = 3000;
+	
 };
