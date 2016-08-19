@@ -16,25 +16,28 @@ AProjectile::AProjectile()
 	CollisionMesh->SetVisibility(false);
 
 	LaunchBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("LaunchBlast"));
-	LaunchBlast->AttachTo(RootComponent);
+	LaunchBlast->AttachToComponent(RootComponent,FAttachmentTransformRules::KeepRelativeTransform);
 
 	//Projectile_BP örökli
 	ProjectileMovement = CreateDefaultSubobject<UProjectileMovementComponent>(FName("Projectile Movement"));
 	ProjectileMovement->bAutoActivate = false;
+
+	ImpactBlast = CreateDefaultSubobject<UParticleSystemComponent>(FName("Impact Blast"));
+	ImpactBlast->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
+	ImpactBlast->bAutoActivate = false; //isnt triggered by default at spawntime
 }
 
 // Called when the game starts or when spawned
 void AProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	CollisionMesh->OnComponentHit.AddDynamic(this, &AProjectile::OnHit); //Projectile is an actor ?CollisionMesh?
 }
 
-// Called every frame
-void AProjectile::Tick( float DeltaTime )
+void AProjectile::OnHit(UPrimitiveComponent* HitComponenet, AActor* OtherActor, UPrimitiveComponent* OtherComponenet, FVector NormalImpulse, const FHitResult& Hit)
 {
-	Super::Tick( DeltaTime );
-
+	LaunchBlast->Deactivate();
+	ImpactBlast->Activate();
 }
 
 void AProjectile::LauchProjectile(float Speed) 

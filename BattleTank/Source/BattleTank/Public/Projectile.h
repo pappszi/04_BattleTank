@@ -16,9 +16,6 @@ public:
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
 
 	void LauchProjectile(float Speed);
 
@@ -29,4 +26,8 @@ private:
 	UStaticMeshComponent* CollisionMesh = nullptr;
 	UPROPERTY(VisibleAnywhere, Category = "Components")
 	UParticleSystemComponent* LaunchBlast = nullptr;
+	UPROPERTY(VisibleAnywhere, Category = "Components")
+	UParticleSystemComponent* ImpactBlast = nullptr;
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponenet, AActor* OtherActor, UPrimitiveComponent* OtherComponenet, FVector NormalImpulse, const FHitResult& Hit);
 };
